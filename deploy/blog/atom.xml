@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>
+        BASIC blog full text feed    </title>
+        <link href="/blog/atom.xml" rel="self" />
+    
+        <link href="/"/>
+    
+        
+    <updated>2015-11-15T22:11:26Z</updated>
+
+    <id>/blog/atom.xml/</id>
+
+            <entry>
+            <title type="html">终于搭建好自己的博客了</title>
+            <author><name>Fu Jian</name></author>
+            <link href="/blog/happy-post.html"/>
+            <updated>2015-11-15T22:00:00Z</updated>
+            <published>2015-11-15T22:00:00Z</published>
+            <id>/blog/happy-post.html</id>
+                        <category   scheme="/blog/tags"
+                        term="project"
+                        label="Project" />
+            
+            <content type="html">
+                                            </content>
+        </entry>
+    </feed>

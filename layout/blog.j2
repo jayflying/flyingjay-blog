@@ -1,0 +1,45 @@
+{% extends "base.j2" %}
+
+{% block main -%}
+<div class="blog-title">
+  {{ resource.meta.title }}
+</div>
+
+<div class="blog-top-meta">
+    日期: {{ resource.meta.created.strftime('%F') }}
+    标签：
+{% for tag in resource.meta.tags %}<a href="{{ content_url('blog/tags/'~tag~'.html') }}">
+{{ tag }}</a>
+{% endfor %}
+</div>
+
+{% filter markdown|typogrify -%}
+{% block post -%}
+{%- endblock %}
+{%- endfilter %}
+
+
+
+<nav>
+<ul class="pager">
+  <li>
+<a href="{{ content_url(resource.node.url) }}">回到列表</a>
+  </li>
+  <li>
+    <a class="prev{{' disabled' if not resource.prev_by_time }}"
+    {% if resource.prev_by_time %}
+    href="{{ content_url(resource.prev_by_time.url) }}"{% endif %}>
+    上一篇
+    </a>
+  </li>
+  <li>
+    <a class="next{{' disabled' if not resource.next_by_time }}"
+    title="{{ resource.next_by_time.meta.title }}"
+    {% if resource.next_by_time %}
+    href="{{ content_url(resource.next_by_time.url) }}"{% endif %}>
+    下一篇
+</a>
+  </li>
+</ul>
+</nav>
+{%- endblock %}

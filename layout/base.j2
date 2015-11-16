@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{% block title %}{{ resource.meta.title }}{% endblock %}</title>
+  <meta name="description" content="{{ resource.meta.description }}">
+  <meta name="author" content="{{ resource.meta.author }}">
+  <meta name="viewport" content="{{ resource.meta.viewport }}">
+
+  {% block favicons %}
+  <link rel="shortcut icon" href="{{ media_url('/favicon.ico') }}">
+  <link rel="apple-touch-icon" href="{{ media_url('/apple-touch-icon.png') }}">
+  {% endblock favicons %}
+
+  {% block css %}
+  <link rel="stylesheet" href="{{ media_url('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ media_url('css/blog.css') }}">
+  {% endblock css %}
+
+  {% block headjs %}
+  {% endblock headjs %}
+
+  {% block endhead %}{% endblock endhead %}
+</head>
+<body id="{{ resource.meta.id if resource.meta.id else resource.slug }}">
+  
+  {% block nav %}
+  {% from "macros.j2" import render_nav with context %}
+  {{ render_nav(menu, 'blog-masthead') }}
+  {% endblock %}
+  
+  {% block content %}
+  <div class="container">
+      {% block main %}
+      {% endblock main %}
+  </div>
+  {% endblock content%}
+  <footer class="blog-footer">
+    <p>你可以选择<a href="mailto:flyingjay@sina.cn">写邮件</a>,在<a href="#">Github</a>,<a href="#">知乎</a>,<a href="#">豆瓣</a>或者<a href="#">微博</a>上找到我
+  </footer>  
+  {% block js %}
+  {% block jquery %}
+  {% endblock jquery %}
+  {% block scripts %}
+  {% endblock scripts %}
+  {% block analytics %}
+  {% endblock analytics %}
+  {% endblock js %}
+</body>
+</html>

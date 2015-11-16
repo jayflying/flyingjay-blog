@@ -1,0 +1,37 @@
+{% macro render_excerpt(res, class=None) %}
+{% refer to res.relative_path as post %}
+<h4 class="blog-post-title"><a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a></h4>
+<p class="blog-post-meta">
+    日期: {{ res.meta.created.strftime('%F')}}
+</p>
+{{ post.excerpt|markdown|typogrify }}
+{% endmacro %}
+
+
+{% macro render_nav(menu, cls=None) -%}
+{% if menu -%}
+<div {{'class='~cls if cls }}>
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="nav-brand" href="/">FlyingJay</a>
+            {% for item in menu -%}
+            {% set active = False -%}
+            {% if item.type == 'page' -%}
+                {% set active = (resource.url ==
+                    site.content.resource_from_relative_path(item.url).url) -%}
+            {% else -%}
+                {% set active = (node ==
+                    site.content.node_from_relative_path(item.url)) -%}
+            {%- endif %}
+            {% set classes = ['blog-nav-item'] -%}
+            {% do classes.append('active') if active -%}
+            <a  class="{{ classes|join(' ') }}"
+                href="{{ content_url(item.url) }}">
+                {{ item.name }}
+            </a>
+            {%- endfor %}
+        </div>
+    </div>
+</div>
+{%- endif %}
+{%- endmacro %}

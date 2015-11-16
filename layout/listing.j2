@@ -1,0 +1,14 @@
+{% extends "base.j2" %}
+{% from "macros.j2" import render_excerpt with context  %}
+
+
+{% block main %}
+
+<div class="col-sm-8 blog-main">
+{% for res in resource.node.walk_resources_sorted_by_time() %}
+<div class="blog-post">
+    {{ render_excerpt(res) }}
+</div>
+{% endfor %}
+</div>
+{% endblock %}
